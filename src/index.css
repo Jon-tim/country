@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /*(Dark Mode Elements) */
+    --DarkBlue: 209deg 23% 22%;
+    /* //(Dark Mode Background) */
+    --VeryDarkBlue: 207deg 26% 17%;
+    /* // (Light Mode Text) */
+    --StillDarkBlue: 200deg 15% 8%;
+    /* //(Light Mode Input) */
+    --DarkGray: 0deg 0% 52%;
+    /* //(Light Mode Background) */
+    --VeryLightGray: 0deg 0% 98%;
+    /* // (Dark Mode Text & Light Mode Elements) */
+    --White: 0deg 0% 100%;
+  }
+  html {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+  }
+}
