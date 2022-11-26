@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { BiSearch, BiChevronDown } from "react-icons/bi";
 import { regions } from "../utils/functions";
-import { dataDisplay } from "../App";
 
 function Controls(props) {
-  // const data = useContext(dataDisplay);
+  const inputRef = useRef(null);
   const [dropdown, setDropDown] = useState(false);
 
   function handleDropDown(params) {
     setDropDown((prev) => !prev);
     let display = dropdown ? "flex" : "hidden";
   }
+
   function handleFilter(event) {
     fetch("https://restcountries.com/v3.1/region/" + event.target.textContent)
       .then((res) => res.json())
@@ -20,15 +20,31 @@ function Controls(props) {
     setDropDown(false);
   }
 
-  https: return (
-    <div className="flex flex-col gap-8 md:flex-row md:justify-between w-full">
+  function handleSearch(params) {
+    if (inputRef.current.value === null || inputRef.current.value === "") {
+    } else {
+      fetch(
+        "https://restcountries.com/v3.1/name/" + inputRef.current.value.trim()
+      )
+        .then((res) => res.json())
+        .then((data1) => {
+          props.changeData(data1);
+        });
+    }
+    inputRef.current.value = "";
+  }
+
+  return (
+    <div className="flex flex-col gap-8 md:flex-row md:justify-between w-full max-w-7xl px-4 lg:px-0 md:mx-auto">
       <div className="flex items-center shadow px-10 py-4 gap-10 rounded-lg md:w-96">
-        <BiSearch className="text-2xl" />
         <input
           type="text"
           placeholder="Search for a Country..."
           className="focus:outline-none w-full"
+          ref={inputRef}
+          // onChange={handleSearch}
         />
+        <BiSearch className="text-2xl cursor-pointer" onClick={handleSearch} />
       </div>
       <div className="relative w-60">
         <div
