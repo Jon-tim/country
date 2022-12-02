@@ -33,6 +33,11 @@ function Controls(props) {
     }
     inputRef.current.value = "";
   }
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   return (
     <div className="flex flex-col gap-8 md:flex-row md:justify-between w-full max-w-7xl px-4 lg:px-0 md:mx-auto">
@@ -42,6 +47,7 @@ function Controls(props) {
           placeholder="Search for a Country..."
           className="focus:outline-none w-full"
           ref={inputRef}
+          onKeyDown={handleKeyDown}
           // onChange={handleSearch}
         />
         <BiSearch className="text-2xl cursor-pointer" onClick={handleSearch} />
