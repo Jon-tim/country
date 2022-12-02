@@ -11,11 +11,6 @@ function App() {
   return (
     <div className="App">
       <Home></Home>
-      {/* <Routes>
-        <Route path="/" element={<Countries />} />
-        <Route path="country" element={<Country />} />
-        <Route path="*" element={<NoMatch />} />
-      </Routes> */}
     </div>
   );
 }

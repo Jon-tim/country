@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Controls from "./Controls";
 
-function Countries() {
+function Countries({ getCountry }) {
+  // const [country, setCountry] = useState();
+
   const navigate = useNavigate();
+  // const params = useParams();
+  // const name = params.name;
 
   const [data, setData] = useState();
 
@@ -14,6 +18,8 @@ function Countries() {
         setData(data1);
       });
   }, []);
+
+  const location = useRef();
   return (
     <>
       <Controls changeData={setData} />
@@ -22,9 +28,13 @@ function Countries() {
         {data?.map((element) => {
           return (
             <div
-              className="card shadow rounded-lg overflow-hidden w-[280px] cursor-pointer"
-              key={element.name.common}
+              className="card shadow rounded-lg overflow-hidden w-[280px] cursor-pointer mx-auto"
+              key={element.name.official}
               onClick={() => {
+                location.current = element.name.common;
+                // getCountry(location.current);
+                // console.log(element.name.common);
+                getCountry(element);
                 navigate("country");
               }}
             >
@@ -42,7 +52,7 @@ function Countries() {
                   population:
                   <span className="font-normal ml-2">
                     {element.population > 0
-                      ? element.population
+                      ? element.population.toLocaleString()
                       : "None Recorded"}
                   </span>
                 </p>
