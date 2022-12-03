@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Countries from "../features/Countries";
 import Country from "./Country";
 // import { BiAlarm } from "react-icons/bi";
@@ -8,24 +8,29 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
+  // const [indCount, setInd] = useState();
 
-  const chosen = useRef();
-  function getCountry(params) {
-    chosen.current = params;
+  // useEffect(() => {
+  //   localStorage.setItem("items", JSON.stringify(items));
+  // }, [items]);
+  // console.log(item);
 
-  }
+  // const chosen = useRef();
+  // function getCountry(params) {
+  //   setInd(params);
+  //   // chosen.current = params;
+  //   console.log(params);
+  // }
 
   return (
     <>
       <div className="App relative main  max-w-7xl px-4 md:mx-auto">
         <NavBar />
         <div className="mt-32">
+          {/* <p>{indCount}</p> */}
           <Routes>
-            <Route path="/" element={<Countries getCountry={getCountry} />} />
-            <Route
-              path="country"
-              element={<Country props={chosen.current} />}
-            />
+            <Route path="/" element={<Countries />} />
+            <Route path="country" element={<Country />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </div>

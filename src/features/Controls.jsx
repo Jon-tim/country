@@ -13,11 +13,19 @@ function Controls(props) {
 
   function handleFilter(event) {
     fetch("https://restcountries.com/v3.1/region/" + event.target.textContent)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw Error(res.status);
+        }
+        res.json();
+      })
       .then((data1) => {
         props.changeData(data1);
+      })
+      .catch((error) => {
+        console.log("Something went wrong 💔", error.message);
       });
-    setDropDown(false);
+    setDropDown(false); 
   }
 
   function handleSearch(params) {
@@ -26,9 +34,17 @@ function Controls(props) {
       fetch(
         "https://restcountries.com/v3.1/name/" + inputRef.current.value.trim()
       )
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) {
+            throw Error(res.status);
+          }
+          res.json();
+        })
         .then((data1) => {
           props.changeData(data1);
+        })
+        .catch((error) => {
+          console.log("Something went wrong 💔", error.message);
         });
     }
     inputRef.current.value = "";

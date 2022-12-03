@@ -1,90 +1,136 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-// import { data } from "autoprefixer";
 
-function Country({ props }) {
-  const data = props;
-  console.log(data);
+function Country() {
   const navigate = useNavigate();
-  const [country, setCountry] = useState();
+  const [item, setItem] = useState();
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (items) {
+      fetch("https://restcountries.com/v3.1/name/" + items)
+        .then((res) => res.json())
+        .then((data) => {
+          setItem(data[0]);
+          // console.log(data);
+        });
+    }
+  }, []);
+
+  // const [border, setBorder] = useState();
+  // console.log(data.borders);
+
+  // useEffect(() => {
+  //   if ("borders" in data) {
+  //     const borders = data.borders;
+  //     let arr;
+  //     function getFullBorder() {
+  //       borders.map((i) =>
+  //         fetch("https://restcountries.com/v3.1/alpha/" + i)
+  //           .then((res) => res.json())
+  //           .then((data1) => {
+  //             console.log(data1[0].name.common);
+  //             // setBorder(data1);
+  //             const borderName = [data1[0].name.common];
+  //             // console.log(data1[0].name.common);
+  //             // arr.push(data1[0].name.common);
+  //             // arr += data1[0].name.common;
+  //           })
+  //       );
+  //     }
+  //     console.log(arr);
+  //     // console.log(border);
+
+  //     getFullBorder();
+  //   } else {
+  //     console.log("no border");
+  //   }
+  // }, []);
 
   return (
-    <div className="mt-10 max-w-7xl px-4 md:mx-auto">
+    <div className="mt-10 max-w-7xl px-4 md:mx-auto md:max-w-2xl lg:max-w-full">
       <p
         onClick={() => navigate(-1)}
-        className="cursor-pointer flex items-center justify-center gap-2 capitalize shadow w-28 h-8 mb-14"
+        className="cursor-pointer flex items-center justify-center gap-2 capitalize shadow w-28 h-8 mb-10"
       >
         <BiArrowBack /> back
       </p>
 
-      <div className="mb-10">
-        <img src={data.flags.png} alt="" className="w-full" />
-        <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-2">
-            <h1 className="font-bold text-2xl mt-10 mb-3">
-              {data.name.common}
-            </h1>
-            <p className="font-semibold capitalize">
-              native name:
-              <span className="font-normal ml-2">{data.name.common}</span>
-            </p>
-            <p className="font-semibold capitalize">
-              population:
-              <span className="font-normal ml-2">
-                {data.population.toLocaleString()}
-              </span>
-            </p>
-            <p className="font-semibold capitalize">
-              region:
-              <span className="font-normal ml-2">{data.region}</span>
-            </p>
-            <p className="font-semibold capitalize">
-              sub region:
-              <span className="font-normal ml-2">{data.subregion}</span>
-            </p>
-            <p className="font-semibold capitalize">
-              capital:
-              <span className="font-normal ml-2">{data.capital}</span>
-            </p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="font-semibold capitalize">
-              top level domain:
-              <span className="font-normal ml-2">{data.tld[0]}</span>
-            </p>
-            <p className="font-semibold capitalize">
-              currencies:
-              <span className="font-normal ml-2">
-                {Object.values(data.currencies)[0].name}
-              </span>
-            </p>
-            <p className="font-semibold capitalize">
-              language:
-              <span className="font-normal ml-2">
-                {Object.values(data.languages).join(", ")}
-              </span>
-            </p>
-          </div>
+      <div className="flex flex-col items-center lg:flex-row w-full lg:items-center">
+        <div className="w-full lg:w-1/2 lg:h-[400px] ">
+          <img
+            src={item?.flags.png}
+            alt=""
+            className=" w-full lg:w-[550px] h-full"
+          />
         </div>
-      </div>
-      <div className="flex flex-col gap-4">
-        <p className="capitalize font-semibold">border countries:</p>
-        <div className="flex items-center gap-4">
-          {"borders" in data ? (
-            data.borders
-              .map((i) => (
-                <span
-                  key={i}
-                  className="inline-flex font-normal items-center justify-center capitalize shadow w-28 h-8 "
-                >
-                  {i}
+        <div className="flex flex-col gap-8 w-full lg:w-1/2 lg:p-9 lg:gap-6">
+          <h1 className="font-bold text-2xl mt-10 lg:mb-3 lg:mt-0">
+            {item?.name.common}
+          </h1>
+
+          <div className="flex flex-col lg:flex-row lg:justify-between md:flex-row md:justify-between gap-6 lg:gap-0">
+            <div className="flex flex-col gap-2 ">
+              <p className="font-semibold capitalize">
+                native name:
+                <span className="font-normal ml-2">{item?.name.common}</span>
+              </p>
+              <p className="font-semibold capitalize">
+                population:
+                <span className="font-normal ml-2">
+                  {item?.population.toLocaleString()}
                 </span>
-              ))
-              .slice(0, 3)
-          ) : (
-            <p>this country has no known border.</p>
-          )}
+              </p>
+              <p className="font-semibold capitalize">
+                region:
+                <span className="font-normal ml-2">{item?.region}</span>
+              </p>
+              <p className="font-semibold capitalize">
+                sub region:
+                <span className="font-normal ml-2">{item?.subregion}</span>
+              </p>
+              <p className="font-semibold capitalize">
+                capital:
+                <span className="font-normal ml-2">{item?.capital}</span>
+              </p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="font-semibold capitalize">
+                top level domain:
+                <span className="font-normal ml-2">{item?.tld[0]}</span>
+              </p>
+              <p className="font-semibold capitalize">
+                currencies:
+                <span className="font-normal ml-2">
+                  {item && Object.values(item?.currencies)[0].name}
+                </span>
+              </p>
+              <p className="font-semibold capitalize">
+                language:
+                <span className="font-normal ml-2">
+                  {item && Object.values(item?.languages).join(", ")}
+                </span>
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:flex-wrap">
+            <p className="capitalize font-semibold">border countries:</p>
+            <div className="flex items-center gap-4 flex-wrap ">
+              {item && "borders" in item ? (
+                item?.borders.map((i) => (
+                  <span
+                    key={i}
+                    className="inline-flex font-normal items-center justify-center capitalize shadow px-2 h-8 "
+                  >
+                    {i}
+                  </span>
+                ))
+              ) : (
+                <p className="">This country has no known border.</p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
