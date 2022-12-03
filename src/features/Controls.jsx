@@ -25,7 +25,7 @@ function Controls(props) {
       .catch((error) => {
         console.log("Something went wrong 💔", error.message);
       });
-    setDropDown(false); 
+    setDropDown(false);
   }
 
   function handleSearch(params) {
@@ -61,16 +61,20 @@ function Controls(props) {
         <input
           type="text"
           placeholder="Search for a Country..."
-          className="focus:outline-none w-full"
+          className="bg-transparent focus:outline-none w-full text-DarkGray"
           ref={inputRef}
           onKeyDown={handleKeyDown}
+
           // onChange={handleSearch}
         />
-        <BiSearch className="text-2xl cursor-pointer" onClick={handleSearch} />
+        <BiSearch
+          className="text-2xl cursor-pointer text-DarkBlue dark:text-white"
+          onClick={handleSearch}
+        />
       </div>
-      <div className="relative w-60">
+      <div className="relative w-60 text-StillDarkBlue dark:text-white">
         <div
-          className="w-full rounded-lg flex justify-between items-center px-6 py-4 shadow cursor-pointer"
+          className="w-full rounded-lg flex justify-between items-center px-6 py-4 shadow cursor-pointer bg-white dark:bg-DarkBlue"
           onClick={handleDropDown}
         >
           Filter by Region
@@ -79,13 +83,13 @@ function Controls(props) {
         <div
           className={`regions ${
             dropdown ? "flex" : "hidden"
-          } absolute z-51 bg-white flex-col gap-3 top-[70px] left-0 right-0 shadow py-4 rounded-lg`}
+          } absolute z-51 bg-white flex-col gap-3 top-[70px] left-0 right-0 shadow py-4 rounded-lg dark:bg-DarkBlue`}
         >
           {regions.map((region) => {
             return (
               <span
                 key={region}
-                className="capitalize px-5 cursor-pointer"
+                className="text-DarkBlue dark:text-white capitalize px-5 cursor-pointer"
                 onClick={handleFilter}
               >
                 {region}

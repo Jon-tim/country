@@ -49,15 +49,15 @@ function Country() {
   // }, []);
 
   return (
-    <div className="mt-10 max-w-7xl px-4 md:mx-auto md:max-w-2xl lg:max-w-full">
+    <div className="mt-10 max-w-7xl px-4 md:mx-auto md:max-w-2xl lg:max-w-full bg-VeryLightGray dark:bg-VeryDarkBlue">
       <p
         onClick={() => navigate(-1)}
-        className="cursor-pointer flex items-center justify-center gap-2 capitalize shadow w-28 h-8 mb-10"
+        className="cursor-pointer flex items-center justify-center gap-2 capitalize shadow w-28 h-8 mb-10 text-DarkBlue dark:text-white bg-white dark:bg-DarkBlue"
       >
-        <BiArrowBack /> back
+        <BiArrowBack className="text-DarkBlue dark:text-white" /> back
       </p>
 
-      <div className="flex flex-col items-center lg:flex-row w-full lg:items-center">
+      <div className="flex flex-col items-center lg:flex-row w-full lg:items-center text-DarkBlue dark:text-white">
         <div className="w-full lg:w-1/2 lg:h-[400px] ">
           <img
             src={item?.flags.png}

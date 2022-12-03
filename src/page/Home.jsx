@@ -8,25 +8,12 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
-  // const [indCount, setInd] = useState();
-
-  // useEffect(() => {
-  //   localStorage.setItem("items", JSON.stringify(items));
-  // }, [items]);
-  // console.log(item);
-
-  // const chosen = useRef();
-  // function getCountry(params) {
-  //   setInd(params);
-  //   // chosen.current = params;
-  //   console.log(params);
-  // }
 
   return (
     <>
       <div className="App relative main  max-w-7xl px-4 md:mx-auto">
         <NavBar />
-        <div className="mt-32">
+        <div className="mt-32 dark:bg-VeryDarkBlue">
           {/* <p>{indCount}</p> */}
           <Routes>
             <Route path="/" element={<Countries />} />
