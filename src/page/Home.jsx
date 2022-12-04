@@ -13,7 +13,7 @@ function Home() {
     <>
       <div className="App relative main">
         <NavBar />
-        <div className="bg-VeryDarkBlue">
+        <div className="bg-VeryDarkBlue h-screen">
           {/* <p>{indCount}</p> */}
           <Routes>
             <Route path="/" element={<Countries />} />

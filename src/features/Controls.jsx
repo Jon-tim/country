@@ -13,12 +13,7 @@ function Controls(props) {
 
   function handleFilter(event) {
     fetch("https://restcountries.com/v3.1/region/" + event.target.textContent)
-      .then((res) => {
-        if (!res.ok) {
-          throw Error(res.status);
-        }
-        res.json();
-      })
+      .then((res) => res.json())
       .then((data1) => {
         props.changeData(data1);
       })
@@ -34,12 +29,7 @@ function Controls(props) {
       fetch(
         "https://restcountries.com/v3.1/name/" + inputRef.current.value.trim()
       )
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.status);
-          }
-          res.json();
-        })
+        .then((res) => res.json())
         .then((data1) => {
           props.changeData(data1);
         })
@@ -61,7 +51,7 @@ function Controls(props) {
         <input
           type="text"
           placeholder="Search for a Country..."
-          className="bg-transparent focus:outline-none w-full text-DarkGray"
+          className="bg-transparent focus:outline-none w-full text-DarkGray dark:text-white"
           ref={inputRef}
           onKeyDown={handleKeyDown}
 
