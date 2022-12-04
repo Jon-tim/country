@@ -11,9 +11,9 @@ function Home() {
 
   return (
     <>
-      <div className="App relative main  max-w-7xl px-4 md:mx-auto">
+      <div className="App relative main">
         <NavBar />
-        <div className="mt-32 dark:bg-VeryDarkBlue">
+        <div className="bg-VeryDarkBlue">
           {/* <p>{indCount}</p> */}
           <Routes>
             <Route path="/" element={<Countries />} />

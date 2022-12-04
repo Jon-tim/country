@@ -20,7 +20,7 @@ function Countries() {
   }
 
   return (
-    <>
+    <div className="pt-36 dark:bg-VeryDarkBlue">
       <Controls changeData={setData} />
 
       <div className="w-full mx-auto max-w-7xl flex justify-between flex-wrap mt-10 gap-x-4 gap-y-8 md:mx-auto">
@@ -69,7 +69,7 @@ function Countries() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 
