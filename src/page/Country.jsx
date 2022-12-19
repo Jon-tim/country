@@ -51,7 +51,7 @@ function Country() {
 
   return (
     <div className="pt-32 dark:bg-VeryDarkBlue bg-VeryLightGray h-full lg:h-screen">
-      <div className=" max-w-7xl px-4 md:mx-auto md:max-w-2xl lg:max-w-7xl">
+      <div className=" max-w-7xl px-4 md:mx-auto md:max-w-2xl lg:max-w-7xl h-full">
         <p
           onClick={() => navigate(-1)}
           className="cursor-pointer flex items-center justify-center gap-2 capitalize shadow w-28 h-8 mb-10 text-DarkBlue dark:text-white bg-white dark:bg-DarkBlue"
