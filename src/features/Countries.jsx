@@ -1,26 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Controls from "./Controls";
 
 function Countries() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [data, setData] = useState();
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
-      .then((res) => 
-    
-        res.json()
-      )
+      .then((res) => res.json())
       .then((data1) => {
         setData(data1);
       });
   }, []);
-
-  function indCountry(params) {
-    localStorage.setItem("items", JSON.stringify(params));
-  }
 
   return (
     <div className="pt-36 dark:bg-VeryDarkBlue">
@@ -29,13 +22,10 @@ function Countries() {
       <div className="w-full mx-auto max-w-7xl flex justify-between flex-wrap mt-10 gap-x-4 gap-y-8 md:mx-auto h-full">
         {data?.map((element) => {
           return (
-            <div
+            <Link
+              to={element.name.common.toLowerCase()}
               className="card shadow rounded-lg overflow-hidden w-[280px] cursor-pointer  text-StillDarkBlue bg-white dark:text-white bg-DarkBlue"
               key={element.name.official}
-              onClick={() => {
-                indCountry(element.name.common);
-                navigate("country");
-              }}
             >
               <div>
                 <img
@@ -68,7 +58,7 @@ function Countries() {
                   </span>
                 </p>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

@@ -4,19 +4,20 @@ import { BiArrowBack } from "react-icons/bi";
 
 function Country() {
   const navigate = useNavigate();
+  const { nameId } = useParams();
   const [item, setItem] = useState();
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (items) {
-      fetch("https://restcountries.com/v3.1/name/" + items)
-        .then((res) => res.json())
-        .then((data) => {
-          setItem(data[0]);
-          // console.log(data);
-        });
-    }
-  }, []);
+    // const items = JSON.parse(localStorage.getItem("items"));
+    // if (items) {
+    fetch(`https://restcountries.com/v3.1/name/${nameId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setItem(data[0]);
+        console.log(data);
+      });
+    // }
+  }, [nameId]);
 
   // const [border, setBorder] = useState();
   // console.log(data.borders);
@@ -89,11 +90,15 @@ function Country() {
                 </p>
                 <p className="font-semibold capitalize">
                   sub region:
-                  <span className="font-normal ml-2">{item?.subregion}</span>
+                  <span className="font-normal ml-2">
+                    {item?.subregion ? item?.subregion : "No Region Recorded"}
+                  </span>
                 </p>
                 <p className="font-semibold capitalize">
                   capital:
-                  <span className="font-normal ml-2">{item?.capital}</span>
+                  <span className="font-normal ml-2">
+                    {item?.capital ? item?.capital : "No capital recorded"}
+                  </span>
                 </p>
               </div>
               <div className="flex flex-col gap-2">
@@ -104,13 +109,18 @@ function Country() {
                 <p className="font-semibold capitalize">
                   currencies:
                   <span className="font-normal ml-2">
-                    {item && Object.values(item?.currencies)[0].name}
+                    {item?.currencies
+                      ? Object.values(item?.currencies)[0].name
+                      : "No currency recorded"}
+                    {/* {Object.values(item?.currencies)[0].name} */}
                   </span>
                 </p>
                 <p className="font-semibold capitalize">
                   language:
                   <span className="font-normal ml-2">
-                    {item && Object.values(item?.languages).join(", ")}
+                    {item?.languages
+                      ? Object.values(item?.languages).join(", ")
+                      : "No language recorded"}
                   </span>
                 </p>
               </div>
