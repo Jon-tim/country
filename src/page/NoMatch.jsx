@@ -2,7 +2,7 @@ import React from "react";
 
 function NoMatch() {
   return (
-    <div className="mt-32 max-w-7xl px-4 md:mx-auto">
+    <div className="mt-32 max-w-7xl px-4 md:mx-auto h-full">
       No Country Matches such
       {/* 1. is this country on earth/n
         2. I have serach the entire globe, walahi I see not such a 

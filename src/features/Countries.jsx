@@ -24,7 +24,7 @@ function Countries() {
           return (
             <Link
               to={element.name.common.toLowerCase()}
-              className="card shadow rounded-lg overflow-hidden w-[280px] cursor-pointer  text-StillDarkBlue bg-white dark:text-white bg-DarkBlue"
+              className="card shadow rounded-lg overflow-hidden w-[280px] cursor-pointer mx-auto text-StillDarkBlue bg-white dark:text-white bg-DarkBlue"
               key={element.name.official}
             >
               <div>
