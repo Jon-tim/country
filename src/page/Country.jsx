@@ -50,7 +50,7 @@ function Country() {
   // }, []);
 
   return (
-    <div className="pt-32 dark:bg-VeryDarkBlue bg-VeryLightGray h-full lg:h-screen">
+    <div className="pt-32 dark:bg-VeryDarkBlue bg-VeryDarkBlue h-full lg:h-screen">
       <div className=" max-w-7xl px-4 md:mx-auto md:max-w-2xl lg:max-w-7xl h-full">
         <p
           onClick={() => navigate(-1)}
